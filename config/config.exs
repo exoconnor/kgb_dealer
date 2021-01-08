@@ -6,6 +6,9 @@ config :crawly,
     Crawly.Middlewares.DomainFilter,
     Crawly.Middlewares.UniqueRequest,
     {Crawly.Middlewares.UserAgent, user_agents: ["Crawly (The Itsy Bitsy Spider, like Gecko)"]}
+  ],
+  pipelines: [
+    KgbDealer.CrawlyPipes.ExtractMaximalPositivity
   ]
 if config_env() == :test do
   IO.puts("Env is test in test branch")
