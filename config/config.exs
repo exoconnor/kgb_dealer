@@ -1,6 +1,7 @@
 import Config
 
 config :crawly,
+  closespider_itemcount: 5,
   middlewares: [
     Crawly.Middlewares.DomainFilter,
     Crawly.Middlewares.UniqueRequest,
