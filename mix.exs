@@ -23,7 +23,8 @@ defmodule KgbDealer.MixProject do
   defp deps do
     [
       {:crawly, "~> 0.12.0"},
-      {:floki, "0.29.0"}
+      {:floki, "0.29.0"},
+      {:veritaserum, path: "vendor/veritaserum"}
     ]
   end
 end
