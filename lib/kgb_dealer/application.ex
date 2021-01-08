@@ -8,7 +8,9 @@ defmodule KgbDealer.Application do
       {KgbDealer.CountingSpiders, []},
     ]
     Supervisor.start_link(children, strategy: :one_for_one)
-    KgbDealer.Cli.start()
+
+    Crawly.Engine.start_spider(KgbDealer.Spider)
+    KgbDealer.Cli.wait()
   end
 
   def finish do

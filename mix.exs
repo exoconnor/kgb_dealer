@@ -8,6 +8,7 @@ defmodule KgbDealer.MixProject do
       elixir: "~> 1.11",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
+      aliases: aliases()
     ]
   end
 
@@ -26,5 +27,9 @@ defmodule KgbDealer.MixProject do
       {:floki, "0.29.0"},
       {:veritaserum, path: "vendor/veritaserum"}
     ]
+  end
+
+  defp aliases do
+    [test: ["test --no-start"]]
   end
 end

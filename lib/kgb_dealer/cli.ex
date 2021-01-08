@@ -1,9 +1,4 @@
 defmodule KgbDealer.Cli do
-  def start() do
-    Crawly.Engine.start_spider(KgbDealer.Spider)
-    wait()
-  end
-
   def wait() do
     case do_command() do
       :exit -> System.stop()
