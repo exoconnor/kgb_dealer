@@ -9,7 +9,7 @@ defmodule KgbDealer.Spider do
   @impl Crawly.Spider
   def init() do
     [
-      # TODO(connor): Programatically generate this list
+      # QUESTION(connor): Is it still a crawler if you manually entered all the URLs?
       start_urls: [
         "https://www.dealerrater.com/dealer/McKaig-Chevrolet-Buick-A-Dealer-For-The-People-dealer-reviews-23685/page1/",
         "https://www.dealerrater.com/dealer/McKaig-Chevrolet-Buick-A-Dealer-For-The-People-dealer-reviews-23685/page2/",
@@ -23,12 +23,13 @@ defmodule KgbDealer.Spider do
   @impl Crawly.Spider
   def parse_item(response) do
     {:ok, document} = Floki.parse_document(response.body)
+
     reviews = document
-    |> Floki.find("p.review-content")
-    |> Enum.map(fn review -> Floki.text(review, [deep: false]) end)
+    |> Floki.find("div.review-entry")
+    |> Enum.map(fn review -> KgbDealer.Review.from_floki(review) end)
     |> IO.inspect
 
-    %{
+    %Crawly.ParsedItem{
       :requests => [],
       :items => reviews
     }
