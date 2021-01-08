@@ -10,7 +10,7 @@ defmodule KgbDealer.Spider do
   def init() do
     [
       start_urls: [
-        "https://www.dealerrater.com/dealer/McKaig-Chevrolet-Buick-A-Dealer-For-The-People-dealer-reviews-23685/page1/"
+        "https://www.dealerrater.com/dealer/McKaig-Chevrolet-Buick-A-Dealer-For-The-People-dealer-reviews-23685/page1/",
       ]
     ]
   end
@@ -26,14 +26,14 @@ defmodule KgbDealer.Spider do
     |> Utils.build_absolute_urls(base_url())
     |> Utils.requests_from_urls()
 
-    # Extract review entries
+    # Extract review entries (this could be done in a pipeline)
     reviews = document
     |> Floki.find("div.review-entry")
     |> Enum.map(fn review -> KgbDealer.Review.from_floki(review) end)
 
     %Crawly.ParsedItem{
       :requests => requests,
-      :items => [%{page: response.request_url reviews: reviews}]
+      :items => [%{page: response.request_url, reviews: reviews}]
     }
   end
 end
