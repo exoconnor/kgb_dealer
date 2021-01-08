@@ -1,7 +1,7 @@
 import Config
 
 config :crawly,
-  closespider_itemcount: 5,
+  closespider_itemcount: 5, # Insufficient - I believe the pipeline still has to clear throwing off count
   middlewares: [
     Crawly.Middlewares.DomainFilter,
     Crawly.Middlewares.UniqueRequest,
@@ -11,7 +11,5 @@ config :crawly,
     KgbDealer.CrawlyPipes.ExtractMaximalPositivity
   ]
 if config_env() == :test do
-  IO.puts("Env is test in test branch")
-else
-  IO.puts("Env is #{config_env()}")
+  # TODO(connor)
 end

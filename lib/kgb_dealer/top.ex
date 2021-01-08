@@ -14,9 +14,10 @@ defmodule KgbDealer.Top do
     Agent.get(__MODULE__, & &1)
   end
 
+  # Maintain top 3 by sorting a bunch of 6 element lists
   def merge(contenders) do
-    Agent.update(__MODULE__, fn state ->
-      state ++ contenders
+    Agent.update(__MODULE__, fn top ->
+      top ++ contenders
       |> Enum.sort_by(fn x -> x[:score] end, :desc)
       |> Enum.take(3)
     end)

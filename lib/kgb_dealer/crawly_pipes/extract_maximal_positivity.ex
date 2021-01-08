@@ -13,6 +13,11 @@ defmodule KgbDealer.CrawlyPipes.ExtractMaximalPositivity do
     |> Enum.take(3)
 
     KgbDealer.Top.merge(top3)
-    {item, state}
+    if item[:status] == :exit do
+      KgbDealer.Application.finish()
+      {item, state}
+    else
+      {item, state}
+    end
   end
 end
