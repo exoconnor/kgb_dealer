@@ -14,12 +14,12 @@ defmodule Veritaserum.Evaluator do
           list
         end).()
     |> Enum.each(fn {word, value} ->
-      @doc """
-      Evaluates if a word/emoji is a **#{facet}** and returns value.
+     # @doc """
+     # Evaluates if a word/emoji is a **#{facet}** and returns value.
 
-          iex> Veritaserum.Evaluator.evaluate_#{facet}("#{word}")
-          #{value}
-      """
+      # iex> Veritaserum.Evaluator.evaluate_#{facet}("#{word}")
+      # #{value}
+      # """
       def unquote(:"evaluate_#{facet}")(unquote(word)), do: unquote(value)
     end)
 
