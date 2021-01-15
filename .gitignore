@@ -25,3 +25,4 @@ kgb_dealer-*.tar
 
 # Temporary files for e.g. tests
 /tmp
+.idea/
